@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Support Gideon — Keep the Build Running</title>
+<meta name="description" content="Gideon Amowogbaje is short on the funds to renew his domain and hosting this month. Here's how to help — a gift, a no-interest loan, or a trade." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0F14;
+    --surface:#121821;
+    --surface-2:#1A2230;
+    --text:#E8ECF1;
+    --muted:#8B96A5;
+    --amber:#F5A623;
+    --amber-dim:#a8741b;
+    --green:#3ECF8E;
+    --border:rgba(255,255,255,0.08);
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- status bar ---------- */
+  .topline{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.04em;
+    color:var(--muted);
+    border-bottom:1px solid var(--border);
+    padding:14px 0;
+  }
+  .topline .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+  .dot{
+    display:inline-block;width:7px;height:7px;border-radius:50%;
+    background:var(--amber);margin-right:8px;
+    box-shadow:0 0 0 0 rgba(245,166,35,0.6);
+    animation:pulse 1.8s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(245,166,35,0.5);}
+    70%{box-shadow:0 0 0 8px rgba(245,166,35,0);}
+    100%{box-shadow:0 0 0 0 rgba(245,166,35,0);}
+  }
+
+  /* ---------- hero ---------- */
+  header.hero{padding:64px 0 40px;}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--mono);font-size:12px;letter-spacing:0.06em;
+    color:var(--amber);border:1px solid rgba(245,166,35,0.35);
+    background:rgba(245,166,35,0.08);
+    padding:6px 12px;border-radius:100px;margin-bottom:24px;
+    text-transform:uppercase;
+  }
+  h1{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(32px,5vw,48px);
+    line-height:1.12;
+    margin:0 0 18px;
+    letter-spacing:-0.01em;
+  }
+  h1 span{color:var(--amber);}
+  .lede{
+    font-size:18px;
+    color:var(--muted);
+    max-width:56ch;
+    margin:0 0 32px;
+  }
+
+  /* status panel — signature element */
+  .panel{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:36px;
+  }
+  .panel-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 20px;
+    border-bottom:1px solid var(--border);
+    font-family:var(--mono);font-size:12px;color:var(--muted);
+  }
+  .panel-head .status{color:var(--amber);font-weight:600;}
+  .panel-rows{padding:4px 20px;}
+  .row{
+    display:flex;justify-content:space-between;gap:16px;
+    padding:12px 0;
+    border-bottom:1px solid var(--border);
+    font-family:var(--mono);font-size:13px;
+  }
+  .row:last-child{border-bottom:none;}
+  .row .k{color:var(--muted);}
+  .row .v{color:var(--text);text-align:right;}
+  .row .v.amber{color:var(--amber);}
+
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;}
+  .btn{
+    font-family:var(--body);font-weight:600;font-size:15px;
+    padding:13px 22px;border-radius:8px;text-decoration:none;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:transform .15s ease, opacity .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--amber);color:#151006;}
+  .btn-outline{border:1px solid var(--border);color:var(--text);}
+  .btn-ghost{color:var(--muted);}
+
+  /* ---------- sections ---------- */
+  section{padding:44px 0;border-top:1px solid var(--border);}
+  h2{
+    font-family:var(--display);font-size:24px;font-weight:600;
+    margin:0 0 18px;
+  }
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.08em;
+    color:var(--amber);text-transform:uppercase;margin:0 0 8px;
+  }
+  p{color:var(--text);margin:0 0 16px;}
+  p.muted{color:var(--muted);}
+
+  .cards{display:grid;gap:14px;grid-template-columns:1fr 1fr;}
+  @media(max-width:600px){.cards{grid-template-columns:1fr;}}
+  .card{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:10px;padding:20px;
+  }
+  .card h3{
+    font-family:var(--display);font-size:16px;margin:0 0 8px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .card p{font-size:14px;color:var(--muted);margin:0 0 14px;}
+  .card .btn{width:100%;justify-content:center;font-size:14px;padding:11px 16px;}
+
+  .bank-box{
+    background:var(--surface-2);border:1px solid var(--border);
+    border-radius:10px;padding:18px 20px;font-family:var(--mono);
+    font-size:13px;line-height:2;margin-top:6px;
+  }
+  .bank-box .k{color:var(--muted);display:inline-block;min-width:120px;}
+  .copy-note{font-size:12px;color:var(--muted);margin-top:10px;}
+
+  .skills{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px;}
+  .chip{
+    font-family:var(--mono);font-size:12px;color:var(--green);
+    border:1px solid rgba(62,207,142,0.3);background:rgba(62,207,142,0.08);
+    padding:5px 10px;border-radius:6px;
+  }
+
+  .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+  @media(max-width:600px){.work-grid{grid-template-columns:1fr;}}
+  .work-item{
+    border:1px solid var(--border);border-radius:8px;padding:16px;
+    background:var(--surface);text-decoration:none;display:block;
+  }
+  .work-item .name{font-weight:600;font-size:14px;margin-bottom:4px;}
+  .work-item .go{font-family:var(--mono);font-size:11px;color:var(--muted);}
+
+  .contact-list{display:flex;flex-direction:column;gap:2px;}
+  .contact-list a{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 0;border-bottom:1px solid var(--border);
+    text-decoration:none;font-size:15px;
+  }
+  .contact-list a:last-child{border-bottom:none;}
+  .contact-list .arrow{color:var(--amber);font-family:var(--mono);}
+
+  footer{padding:40px 0 60px;text-align:center;}
+  footer p{color:var(--muted);font-size:13px;}
+</style>
+</head>
+<body>
+
+<div class="topline">
+  <div class="wrap">
+    <span><span class="dot"></span>amowogbaje.com — renewal window closing</span>
+    <span>gideon amowogbaje / backend developer</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="badge">⚠ Domain &amp; hosting renewal</div>
+    <h1>Help me keep the lights on for <span>amowogbaje.com</span>.</h1>
+    <p class="lede">
+      I'm a backend developer building CraftProfessor's Storyframe and Storyverse platforms, plus client work on the side. My hosting renewal is due and I'm short right now — so I'm asking directly, no middleman, no campaign platform. Just me, my bank details, and the truth.
+    </p>
+
+    <div class="panel">
+      <div class="panel-head">
+        <span>renewal_status.log</span>
+        <span class="status">● action required</span>
+      </div>
+      <div class="panel-rows">
+        <div class="row"><span class="k">domain</span><span class="v">amowogbaje.com</span></div>
+        <div class="row"><span class="k">renewal_cost</span><span class="v amber">$87.76</span></div>
+        <div class="row"><span class="k">funds_available</span><span class="v">insufficient</span></div>
+        <div class="row"><span class="k">accepting</span><span class="v">gifts · no-interest loans · trade</span></div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://flutterwave.com/pay/e1xca0l9okpl" target="_blank" rel="noopener">Send a gift — USD</a>
+      <a class="btn btn-outline" href="https://flutterwave.com/pay/uogxz2iymv69" target="_blank" rel="noopener">Send a gift — NGN</a>
+      <a class="btn btn-ghost" href="#bank">Bank transfer details ↓</a>
+    </div>
+  </header>
+
+  <section id="story">
+    <p class="eyebrow">Why I'm asking</p>
+    <h2>The short version</h2>
+    <p>
+      I run my own small development practice under the CraftProfessor name — building an AI-powered storytelling tool and a story-reading platform from the ground up, alongside freelance backend and full-stack work. It's real, working software, not a pitch deck. But right now cash flow hasn't caught up with the work, and my domain renewal is due before I have a client payment lined up to cover it.
+    </p>
+    <p class="muted">
+      I'm not asking anyone to bail me out long-term — just to bridge a short gap. If you can spare it as a gift, thank you. If you'd rather lend it, I'll pay it back with no interest and I'm happy to work out installments. And if there's a service I can offer in return, I'd genuinely rather trade than take.
+    </p>
+  </section>
+
+  <section id="ways">
+    <p class="eyebrow">Three ways to help</p>
+    <h2>Pick whatever fits you</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>🎁 Send a gift</h3>
+        <p>No repayment expected. Every amount helps, and I'll say thank you personally.</p>
+        <a class="btn btn-primary" href="https://flutterwave.com/pay/e1xca0l9okpl" target="_blank" rel="noopener">Gift in USD</a>
+      </div>
+      <div class="card">
+        <h3>🤝 Loan, no interest</h3>
+        <p>Prefer to lend instead? I'll repay it in full — message me and we'll agree on installments that work for you.</p>
+        <a class="btn btn-outline" href="https://wa.me/2347026305945?text=Hi%20Gideon%2C%20I%27d%20like%20to%20talk%20about%20lending%20a%20hand%20with%20your%20renewal." target="_blank" rel="noopener">Chat about a loan</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="trade">
+    <p class="eyebrow">Rather trade than take</p>
+    <h2>Need something built instead?</h2>
+    <p class="muted">If you've got a backend, API, or web app that needs building or fixing, I'll gladly trade the work for the help — no obligation either way.</p>
+    <div class="skills">
+      <span class="chip">Laravel / PHP</span>
+      <span class="chip">NestJS</span>
+      <span class="chip">React &amp; Vite</span>
+      <span class="chip">System &amp; DB design</span>
+      <span class="chip">REST APIs</span>
+      <span class="chip">Payment integrations</span>
+    </div>
+    <p style="margin-top:14px;"><a class="btn btn-outline" href="https://wa.me/2347026305945?text=Hi%20Gideon%2C%20I%27d%20like%20to%20discuss%20trading%20a%20service." target="_blank" rel="noopener">Tell me what you need built →</a></p>
+  </section>
+
+  <section id="bank">
+    <p class="eyebrow">Prefer a direct transfer</p>
+    <h2>Bank details</h2>
+    <p class="muted">If Flutterwave isn't convenient for you, here's the account directly.</p>
+    <div class="bank-box">
+      <div><span class="k">Account holder</span> Gideon Ifedayo Amowogbaje</div>
+      <div><span class="k">Account number</span> 210681022415</div>
+      <div><span class="k">Bank</span> Lead Bank</div>
+      <div><span class="k">Bank address</span> 1801 Main St., Kansas City, MO 64108</div>
+    </div>
+    <p class="copy-note">If you send this way, a quick message afterward helps me know to expect it — details below.</p>
+  </section>
+
+  <section id="work">
+    <p class="eyebrow">In case you're wondering</p>
+    <h2>What I actually build</h2>
+    <p class="muted">A quick look at real projects — happy to walk through any of these.</p>
+    <div class="work-grid">
+      <a class="work-item" href="https://github.com/amowogbaje/library-management-system-api" target="_blank" rel="noopener">
+        <div class="name">Library Management API</div>
+        <div class="go">github · view →</div>
+      </a>
+      <a class="work-item" href="https://amowogbaje.github.io/presley-weather-app/" target="_blank" rel="noopener">
+        <div class="name">Presley Weather App</div>
+        <div class="go">live demo · view →</div>
+      </a>
+      <a class="work-item" href="https://github.com/amowogbaje" target="_blank" rel="noopener">
+        <div class="name">More on GitHub</div>
+        <div class="go">github.com/amowogbaje →</div>
+      </a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="eyebrow">Let's talk</p>
+    <h2>Reach me directly</h2>
+    <div class="contact-list">
+      <a href="https://wa.me/2347026305945" target="_blank" rel="noopener"><span>WhatsApp — +234 702 630 5945</span><span class="arrow">→</span></a>
+      <a href="https://t.me/amowogbaje" target="_blank" rel="noopener"><span>Telegram — @amowogbaje</span><span class="arrow">→</span></a>
+      <a href="mailto:amowogbajegideon@gmail.com"><span>Email — amowogbajegideon@gmail.com</span><span class="arrow">→</span></a>
+      <a href="https://calendly.com/amowogbajegideon" target="_blank" rel="noopener"><span>Book a call</span><span class="arrow">→</span></a>
+      <a href="https://www.linkedin.com/in/amowogbaje" target="_blank" rel="noopener"><span>LinkedIn</span><span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <footer>
+    <p>This page comes down once the renewal is covered. Thank you for reading this far — it means more than the amount.</p>
+    <p>© 2026 Gideon Amowogbaje</p>
+  </footer>
+
+</div>
+</body>
+</html>
